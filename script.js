@@ -9,8 +9,8 @@
    CONFIGURATION — edit these values
 ────────────────────────────────────── */
 const CONFIG = {
-  birthdayPersonName : "[BIRTHDAY_PERSON_NAME]",   // 🔧 Change this
-  birthdayDate       : "2025-05-05T00:00:00",       // 🔧 ISO date string
+  birthdayPersonName : "[BRAMWELL MULWAS]",   // 🔧 Change this
+  birthdayDate       : "2026-05-05T00:00:00",       // 🔧 ISO date string
   whatsappPhone      : "[WHATSAPP_PHONE]",           // 🔧 e.g. 254712345678
   pageUrl            : window.location.href,          // auto-detected
 
