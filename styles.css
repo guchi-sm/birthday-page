@@ -1481,3 +1481,377 @@ footer { background: #040710; border-top: 1px solid rgba(0,212,255,0.12); }
 
 /* Message loading */
 .msg-loading { color: rgba(200,230,255,0.5); }
+
+/* ══════════════════════════════════════════════
+   UPGRADES — Video Card · Wish Card · Hero Badge
+   Toast · Emoji Row · Reactions · Ghost Button
+══════════════════════════════════════════════ */
+
+/* ── Hero badge pill ── */
+.hero-badge {
+  display: inline-block;
+  padding: 6px 20px;
+  border: 1px solid rgba(0,212,255,0.35);
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dt-cyan);
+  margin-bottom: 22px;
+  background: rgba(0,212,255,0.07);
+  opacity: 0;
+  animation: fadeSlideDown 0.8s 0.2s ease forwards;
+}
+
+/* ── Hero CTA group ── */
+.hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeSlideDown 0.9s 1.3s ease forwards;
+}
+
+#hero-video-btn {
+  padding: 16px 36px;
+  background: rgba(0,212,255,0.1);
+  border: 1px solid rgba(0,212,255,0.35);
+  color: var(--dt-cyan);
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+  backdrop-filter: blur(10px);
+}
+#hero-video-btn:hover {
+  background: rgba(0,212,255,0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,212,255,0.25);
+}
+
+/* ── Hero grid overlay (DevTech tech-grid feel) ── */
+.hero-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 1;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%,
+    black 0%, transparent 100%);
+}
+
+/* ── VIDEO SECTION ── */
+#video-section {
+  background: var(--dark);
+  color: var(--cream);
+}
+#video-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg,
+    transparent, var(--dt-cyan), var(--dt-violet-mid), transparent);
+  opacity: 0.35;
+}
+
+.video-sub {
+  color: rgba(200,230,255,0.6);
+  margin-bottom: 36px;
+  font-size: 1rem;
+}
+
+.video-card {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Video tabs */
+.video-tabs {
+  display: flex;
+  border-bottom: 1px solid rgba(0,212,255,0.15);
+  padding: 0 8px;
+}
+
+.vtab {
+  padding: 16px 24px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s, border-color 0.3s;
+  letter-spacing: 0.03em;
+}
+.vtab.active {
+  color: var(--dt-cyan);
+  border-bottom-color: var(--dt-cyan);
+}
+.vtab:hover { color: var(--cream); }
+
+/* Video panes */
+.video-pane { display: none; padding: 28px; }
+.video-pane.active { display: block; }
+
+.video-frame-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 48px rgba(0,0,0,0.6),
+              0 0 0 1px rgba(0,212,255,0.12);
+}
+
+.video-frame-wrap iframe,
+.video-frame-wrap video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 14px;
+}
+
+.video-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.video-duration-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  background: rgba(0,212,255,0.1);
+  border: 1px solid rgba(0,212,255,0.25);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  color: var(--dt-cyan);
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.video-caption {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: rgba(200,230,255,0.75);
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* Video reactions */
+.video-reactions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px 24px;
+  border-top: 1px solid rgba(0,212,255,0.1);
+  flex-wrap: wrap;
+}
+
+.reaction-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-right: 4px;
+}
+
+.react-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 100px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, border-color 0.2s;
+  color: #fff;
+}
+.react-btn:hover {
+  background: rgba(0,212,255,0.15);
+  border-color: rgba(0,212,255,0.35);
+  transform: scale(1.08);
+}
+.react-btn.reacted {
+  background: rgba(0,212,255,0.2);
+  border-color: var(--dt-cyan);
+}
+.react-count {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--dt-cyan);
+  min-width: 14px;
+}
+
+/* ── EMOJI ROW in message form ── */
+.emoji-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.emoji-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+.emoji-pick {
+  background: rgba(0,212,255,0.06);
+  border: 1px solid rgba(0,212,255,0.15);
+  border-radius: 8px;
+  padding: 5px 9px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+.emoji-pick:hover {
+  transform: scale(1.2);
+  background: rgba(0,212,255,0.15);
+}
+
+/* ── WISH / QUOTE CARD ── */
+#wish-section {
+  background: var(--grad-section);
+  color: var(--cream);
+}
+#wish-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg,
+    transparent, var(--dt-cyan), var(--dt-violet-mid), transparent);
+  opacity: 0.3;
+}
+
+.wish-card {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: clamp(32px, 5vw, 60px);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.wish-card::before {
+  content: '"';
+  position: absolute;
+  top: -20px; left: 20px;
+  font-family: var(--font-display);
+  font-size: 10rem;
+  color: rgba(0,212,255,0.06);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.wish-stars {
+  color: var(--dt-cyan);
+  letter-spacing: 0.5em;
+  font-size: 0.85rem;
+  margin-bottom: 24px;
+  opacity: 0.7;
+}
+
+.wish-quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(220,240,255,0.92);
+  line-height: 1.75;
+  margin-bottom: 24px;
+  transition: opacity 0.4s ease;
+  border: none;
+}
+
+.wish-sig {
+  font-size: 0.85rem;
+  color: var(--dt-cyan);
+  letter-spacing: 0.1em;
+  margin-bottom: 28px;
+}
+
+.btn-ghost {
+  padding: 11px 28px;
+  background: transparent;
+  border: 1px solid rgba(0,212,255,0.3);
+  border-radius: 100px;
+  color: var(--dt-cyan);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.08em;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+.btn-ghost:hover {
+  background: rgba(0,212,255,0.1);
+  box-shadow: 0 0 20px rgba(0,212,255,0.2);
+  transform: translateY(-2px);
+}
+
+/* ── TOAST NOTIFICATION ── */
+.toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(0,212,255,0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0,212,255,0.3);
+  color: #e8f4ff;
+  padding: 12px 28px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── FOOTER inner layout ── */
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.footer-main {
+  font-size: 1rem;
+  margin: 0 !important;
+}
+
+@media (max-width: 560px) {
+  .video-tabs { overflow-x: auto; }
+  .vtab { padding: 14px 16px; font-size: 0.8rem; }
+  .video-reactions { padding: 14px 16px 20px; gap: 8px; }
+  .react-btn { padding: 6px 10px; font-size: 0.9rem; }
+  .hero-cta-group { flex-direction: column; align-items: center; }
+  #hero-video-btn, #start-btn { width: 100%; max-width: 280px; }
+}

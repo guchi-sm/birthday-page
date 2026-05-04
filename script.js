@@ -9,9 +9,9 @@
    CONFIGURATION — edit these values
 ────────────────────────────────────── */
 const CONFIG = {
-  birthdayPersonName : "Bramwell Mulwa",  // 🔧 Change this
-  birthdayDate       : "2026-05-05T00:00:00",       // 🔧 ISO date string
-  whatsappPhone      : "[254739106613]",           // 🔧 e.g. 254712345678
+  birthdayPersonName : "Bram Myles",   // 🔧 Change this
+  birthdayDate       : "2025-05-05T00:00:00",       // 🔧 ISO date string
+  whatsappPhone      : "[WHATSAPP_PHONE]",           // 🔧 e.g. 254712345678
   pageUrl            : window.location.href,          // auto-detected
 
   // Typewriter phrases — edit or add your own
@@ -695,3 +695,125 @@ function escHtml(str) {
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 }
+
+/* ══════════════════════════════════════════════
+   UPGRADES — Video Tabs · Reactions · Wish Rotator · Toast
+══════════════════════════════════════════════ */
+
+document.addEventListener("DOMContentLoaded", () => {
+  initVideoTabs();
+  initVideoReactions();
+  initWishRotator();
+  initEmojiPicker();
+});
+
+/* ── VIDEO TABS ── */
+function initVideoTabs() {
+  const tabs  = document.querySelectorAll(".vtab");
+  const panes = document.querySelectorAll(".video-pane");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t  => t.classList.remove("active"));
+      panes.forEach(p => p.classList.remove("active"));
+      tab.classList.add("active");
+      const target = document.getElementById(`vpane-${tab.dataset.tab}`);
+      if (target) target.classList.add("active");
+    });
+  });
+}
+
+/* ── VIDEO REACTIONS ── */
+function initVideoReactions() {
+  const counts = { "❤️": 0, "😂": 0, "😭": 0, "🔥": 0, "🎉": 0 };
+  const idMap  = { "❤️": "rc-heart", "😂": "rc-laugh", "😭": "rc-cry", "🔥": "rc-fire", "🎉": "rc-party" };
+
+  // Load from localStorage
+  const saved = JSON.parse(localStorage.getItem("bdayReactions") || "{}");
+  Object.assign(counts, saved);
+  Object.keys(counts).forEach(e => {
+    const el = document.getElementById(idMap[e]);
+    if (el) el.textContent = counts[e];
+  });
+
+  const reacted = JSON.parse(localStorage.getItem("bdayReacted") || "{}");
+
+  document.querySelectorAll(".react-btn").forEach(btn => {
+    const emoji = btn.dataset.emoji;
+    if (reacted[emoji]) btn.classList.add("reacted");
+
+    btn.addEventListener("click", () => {
+      if (reacted[emoji]) return; // already reacted
+      counts[emoji] = (counts[emoji] || 0) + 1;
+      reacted[emoji] = true;
+      const el = document.getElementById(idMap[emoji]);
+      if (el) el.textContent = counts[emoji];
+      btn.classList.add("reacted");
+      localStorage.setItem("bdayReactions", JSON.stringify(counts));
+      localStorage.setItem("bdayReacted",   JSON.stringify(reacted));
+      showToast(`${emoji} Reaction sent!`);
+
+      // Mini confetti burst
+      triggerConfetti(1200);
+    });
+  });
+}
+
+/* ── WISH ROTATOR ── */
+function initWishRotator() {
+  const wishes = [
+    "\"May this year bring you everything you've dreamed of — and the courage to dream even bigger.\"",
+    "\"You are the reason rooms light up, hearts feel full, and stories get worth telling. Happy birthday.\"",
+    "\"Here's to the one who makes ordinary days feel extraordinary. That's you, Bram.\"",
+    "\"Another year wiser, brighter, more unstoppable. The world doesn't know what's coming. 🔥\"",
+    "\"Your birthday is not just a celebration of your birth — it's a celebration of every life you've touched.\"",
+    "\"May every candle you blow out carry a wish already on its way to you.\"",
+    "\"The best chapters of your story? They haven't been written yet. Happy birthday, legend.\""
+  ];
+
+  const quoteEl = document.getElementById("wish-quote");
+  const newBtn  = document.getElementById("new-wish-btn");
+  if (!quoteEl || !newBtn) return;
+
+  let idx = 0;
+  newBtn.addEventListener("click", () => {
+    idx = (idx + 1) % wishes.length;
+    quoteEl.style.opacity = "0";
+    setTimeout(() => {
+      quoteEl.textContent = wishes[idx];
+      quoteEl.style.opacity = "1";
+    }, 300);
+  });
+}
+
+/* ── EMOJI PICKER for message form ── */
+function initEmojiPicker() {
+  const msgText = document.getElementById("msg-text");
+  document.querySelectorAll(".emoji-pick").forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (!msgText) return;
+      msgText.value += " " + btn.dataset.emoji;
+      msgText.focus();
+      btn.style.transform = "scale(1.4)";
+      setTimeout(() => btn.style.transform = "", 250);
+    });
+  });
+}
+
+/* ── TOAST ── */
+function showToast(msg, duration = 2500) {
+  const toast = document.getElementById("toast");
+  if (!toast) return;
+  toast.textContent = msg;
+  toast.classList.remove("hidden");
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => toast.classList.add("show"));
+  });
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.classList.add("hidden"), 350);
+  }, duration);
+}
+
+// Make showToast globally available so other functions can use it
+window.showToast = showToast;

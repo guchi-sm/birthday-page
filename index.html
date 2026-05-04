@@ -4,31 +4,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  [Bramwell Mulwa] - Happy Birthday Page
+  <title>Happy Birthday, Bram Myles 🎂</title>
+  <meta name="description" content="A special birthday experience for Bram Myles 🎂" />
+
+  <!-- Open Graph (nice preview when shared) -->
+  <meta property="og:title"       content="Happy Birthday, Bram Myles 🎂" />
+  <meta property="og:description" content="A digital gift crafted just for you." />
+  <meta property="og:type"        content="website" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
-  <!-- Styles -->
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- ============================================================
-       FIREBASE SETUP INSTRUCTIONS:
-       1. Go to https://console.firebase.google.com/
-       2. Create a new project
-       3. Add a Web App to the project
-       4. Enable Firestore Database (in test mode for now)
-       5. Copy the firebaseConfig object and paste it below
-       6. Replace every value inside firebaseConfig with yours
-       ============================================================ -->
+  <!-- Firebase -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getFirestore, collection, addDoc, onSnapshot, orderBy, query, serverTimestamp }
       from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-    // 🔥 REPLACE THIS WITH YOUR FIREBASE CONFIG
+    // 🔥 PASTE YOUR FIREBASE CONFIG HERE
     const firebaseConfig = {
       apiKey: "YOUR_API_KEY",
       authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
@@ -39,58 +36,49 @@
     };
 
     const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    // Expose to global scope for script.js
+    const db  = getFirestore(app);
     window.__db = db;
     window.__fbModules = { collection, addDoc, onSnapshot, orderBy, query, serverTimestamp };
-
-    // Dispatch event so script.js knows Firebase is ready
     window.dispatchEvent(new Event("firebase-ready"));
   </script>
 </head>
-
 <body>
 
-  <!-- ═══════════════════════════════════════
-       SCROLL PROGRESS BAR
-  ═══════════════════════════════════════ -->
+  <!-- SCROLL PROGRESS -->
   <div id="scroll-progress"></div>
 
-  <!-- ═══════════════════════════════════════
-       FLOATING HEARTS (injected via JS)
-  ═══════════════════════════════════════ -->
+  <!-- FLOATING HEARTS -->
   <div id="hearts-container" aria-hidden="true"></div>
 
-  <!-- ═══════════════════════════════════════
-       MUSIC PLAYER
-  ═══════════════════════════════════════ -->
+  <!-- MUSIC PLAYER -->
   <div id="music-player" title="Toggle background music">
     <span id="music-icon">🎵</span>
-    <!-- Replace src with your audio file URL -->
     <audio id="bg-music" loop preload="none">
       <source src="[YOUR_MUSIC_FILE_URL]" type="audio/mpeg" />
     </audio>
   </div>
 
-  <!-- ═══════════════════════════════════════
-       1. HERO SECTION
-  ═══════════════════════════════════════ -->
+  <!-- ── HERO ─────────────────────────────── -->
   <section id="hero">
     <canvas id="particle-canvas"></canvas>
+    <div class="hero-grid-overlay" aria-hidden="true"></div>
 
     <div class="hero-content">
-      <p class="hero-pre">✨ A gift from your people</p>
+      <div class="hero-badge">✦ A digital gift crafted for you</div>
       <h1 id="hero-title">
         Happy Birthday,<br />
-        <span class="accent-name">[BIRTHDAY_PERSON_NAME]</span>
+        <span class="accent-name">Bram Myles</span>
         <span class="cake-icon">🎂</span>
       </h1>
       <p id="hero-sub" class="typewriter"></p>
-      <button id="start-btn" onclick="document.getElementById('entry-section').scrollIntoView({behavior:'smooth'})">
-        Start the Story
-        <span class="btn-sparkle">✦</span>
-      </button>
+      <div class="hero-cta-group">
+        <button id="start-btn" onclick="document.getElementById('entry-section').scrollIntoView({behavior:'smooth'})">
+          Start the Story <span class="btn-sparkle">✦</span>
+        </button>
+        <button id="hero-video-btn" onclick="document.getElementById('video-section').scrollIntoView({behavior:'smooth'})">
+          Watch the Video 🎬
+        </button>
+      </div>
     </div>
 
     <div class="scroll-hint">
@@ -99,9 +87,7 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════
-       2. PERSONALIZED ENTRY
-  ═══════════════════════════════════════ -->
+  <!-- ── ENTRY ─────────────────────────────── -->
   <section id="entry-section" class="reveal-section">
     <div class="glass-card entry-card">
       <p class="section-label">Before we begin</p>
@@ -114,9 +100,7 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════
-       3. COUNTDOWN TIMER
-  ═══════════════════════════════════════ -->
+  <!-- ── COUNTDOWN ──────────────────────────── -->
   <section id="countdown-section" class="reveal-section">
     <div class="section-inner">
       <p class="section-label">The big moment</p>
@@ -146,24 +130,17 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════
-       4. STORY TIMELINE
-  ═══════════════════════════════════════ -->
+  <!-- ── STORY TIMELINE ─────────────────────── -->
   <section id="timeline-section" class="reveal-section">
     <div class="section-inner">
       <p class="section-label">The journey</p>
       <h2>A story written in memories 📖</h2>
       <div class="timeline">
 
-        <!-- ── TIMELINE CARD TEMPLATE ──
-             Duplicate this block for each memory.
-             Replace the placeholder values. -->
-
         <div class="timeline-card reveal-card left">
           <div class="timeline-dot"></div>
           <div class="glass-card tl-inner">
             <div class="tl-img-wrap">
-              <!-- Replace src with your image -->
               <img src="https://images.unsplash.com/photo-1464349153735-7db50ed83c84?w=600&q=80" alt="Memory 1" loading="lazy" />
             </div>
             <div class="tl-body">
@@ -216,15 +193,12 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════
-       5. PHOTO GALLERY
-  ═══════════════════════════════════════ -->
+  <!-- ── PHOTO GALLERY ──────────────────────── -->
   <section id="gallery-section" class="reveal-section">
     <div class="section-inner">
       <p class="section-label">Captured moments</p>
       <h2>Our gallery of us 📸</h2>
       <div class="photo-grid" id="photo-grid">
-        <!-- Add/replace src with your photos. Keep data-index in order. -->
         <div class="photo-item" data-index="0">
           <img src="https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=600&q=80" alt="Photo 1" loading="lazy" />
           <div class="photo-overlay"><span>✦</span></div>
@@ -254,20 +228,92 @@
   </section>
 
   <!-- LIGHTBOX -->
-  <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Photo lightbox">
+  <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true">
     <button id="lb-close" aria-label="Close">&times;</button>
     <button id="lb-prev" aria-label="Previous">&#8592;</button>
-    <div id="lb-img-wrap">
-      <img id="lb-img" src="" alt="Lightbox photo" />
-    </div>
+    <div id="lb-img-wrap"><img id="lb-img" src="" alt="Lightbox photo" /></div>
     <button id="lb-next" aria-label="Next">&#8594;</button>
     <div id="lb-counter"></div>
-    <button id="lb-autoplay" title="Toggle slideshow">⏵ Slideshow</button>
+    <button id="lb-autoplay">⏵ Slideshow</button>
   </div>
 
-  <!-- ═══════════════════════════════════════
-       6. MESSAGE WALL (FIREBASE)
-  ═══════════════════════════════════════ -->
+  <!-- ── 🎬 VIDEO CARD ───────────────────────── -->
+  <section id="video-section" class="reveal-section">
+    <div class="section-inner">
+      <p class="section-label">A message in motion</p>
+      <h2>Watch this — made just for you 🎬</h2>
+      <p class="video-sub">Five minutes of love, laughter, and everything in between.</p>
+
+      <div class="video-card glass-card">
+        <!-- VIDEO TABS — switch between YouTube embed or uploaded file -->
+        <div class="video-tabs">
+          <button class="vtab active" data-tab="youtube">📺 YouTube / Link</button>
+          <button class="vtab" data-tab="upload">📁 Video File</button>
+        </div>
+
+        <!-- YouTube / iframe embed -->
+        <div class="video-pane active" id="vpane-youtube">
+          <div class="video-frame-wrap">
+            <!--
+              HOW TO ADD YOUR VIDEO:
+              Option A — YouTube:
+                Replace [YOUR_YOUTUBE_VIDEO_ID] with the ID from your YouTube URL
+                e.g. https://www.youtube.com/watch?v=dQw4w9WgXcQ → ID is dQw4w9WgXcQ
+
+              Option B — Google Drive:
+                Upload video to Google Drive → Share → Anyone with link
+                Get the file ID from the URL and use:
+                https://drive.google.com/file/d/[FILE_ID]/preview
+                Paste that as the src below
+            -->
+            <iframe
+              id="video-iframe"
+              src="https://www.youtube.com/embed/[YOUR_YOUTUBE_VIDEO_ID]?rel=0&modestbranding=1"
+              title="Birthday Video for Bram Myles"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+          <div class="video-meta">
+            <span class="video-duration-badge">🎬 ~5 min</span>
+            <p class="video-caption">"Bram Myles — this one's for you. Press play and feel the love." 💙</p>
+          </div>
+        </div>
+
+        <!-- Upload / local file -->
+        <div class="video-pane" id="vpane-upload">
+          <div class="video-frame-wrap">
+            <!--
+              For a local/hosted MP4 video, replace src below.
+              You can also upload to Cloudinary or Firebase Storage and paste the URL.
+            -->
+            <video id="birthday-video" controls preload="metadata" poster="">
+              <source src="[YOUR_VIDEO_FILE_URL]" type="video/mp4" />
+              Your browser does not support the video element.
+            </video>
+          </div>
+          <div class="video-meta">
+            <span class="video-duration-badge">🎬 ~5 min</span>
+            <p class="video-caption">"Hit play, Bram. This was made with love." 💙</p>
+          </div>
+        </div>
+
+        <!-- Video reactions bar -->
+        <div class="video-reactions">
+          <span class="reaction-label">React:</span>
+          <button class="react-btn" data-emoji="❤️">❤️ <span class="react-count" id="rc-heart">0</span></button>
+          <button class="react-btn" data-emoji="😂">😂 <span class="react-count" id="rc-laugh">0</span></button>
+          <button class="react-btn" data-emoji="😭">😭 <span class="react-count" id="rc-cry">0</span></button>
+          <button class="react-btn" data-emoji="🔥">🔥 <span class="react-count" id="rc-fire">0</span></button>
+          <button class="react-btn" data-emoji="🎉">🎉 <span class="react-count" id="rc-party">0</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MESSAGE WALL ───────────────────────── -->
   <section id="messages-section" class="reveal-section">
     <div class="section-inner">
       <p class="section-label">From the heart</p>
@@ -278,73 +324,81 @@
           <input type="text" id="msg-name" placeholder="Your name" maxlength="40" autocomplete="off" />
           <textarea id="msg-text" placeholder="Write something beautiful…" maxlength="300" rows="3"></textarea>
         </div>
+        <!-- Emoji picker row -->
+        <div class="emoji-row">
+          <span class="emoji-hint">Add a vibe:</span>
+          <button class="emoji-pick" data-emoji="💗">💗</button>
+          <button class="emoji-pick" data-emoji="🎂">🎂</button>
+          <button class="emoji-pick" data-emoji="🥂">🥂</button>
+          <button class="emoji-pick" data-emoji="🔥">🔥</button>
+          <button class="emoji-pick" data-emoji="✨">✨</button>
+          <button class="emoji-pick" data-emoji="🌹">🌹</button>
+        </div>
         <button id="msg-submit">Send Wish ✦</button>
         <p id="msg-status" class="msg-status"></p>
       </div>
 
       <div id="messages-wall" class="messages-wall">
-        <!-- Messages are injected here in real time by script.js -->
         <div class="msg-loading">Loading wishes… 🌸</div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════
-       7. SURPRISE / GIFT SECTION
-  ═══════════════════════════════════════ -->
+  <!-- ── SURPRISE / GIFT ────────────────────── -->
   <section id="surprise-section" class="reveal-section">
     <div class="section-inner">
       <p class="section-label">Make it extra special</p>
-      <h2>Want to surprise her? 💝</h2>
+      <h2>Want to surprise him? 💝</h2>
       <p class="surprise-sub">Reach out directly — send a voice note, a flower, a hug 💐</p>
-
       <div class="surprise-actions">
-        <!-- Replace [WHATSAPP_PHONE] with e.g. 254712345678 (no + or spaces) -->
         <a id="wa-btn" href="https://wa.me/[WHATSAPP_PHONE]" target="_blank" rel="noopener" class="btn-wa">
           <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.549 4.118 1.51 5.851L.057 23.5l5.797-1.524A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.9 9.9 0 01-5.038-1.373l-.36-.214-3.742.982.999-3.648-.235-.374A9.86 9.86 0 012.1 12C2.1 6.525 6.525 2.1 12 2.1c5.474 0 9.9 4.425 9.9 9.9 0 5.474-4.426 9.9-9.9 9.9z"/></svg>
           Send on WhatsApp
         </a>
-        <button id="copy-phone-btn" class="btn-copy" data-phone="[WHATSAPP_PHONE]">
-          📋 Copy Number
-        </button>
+        <button id="copy-phone-btn" class="btn-copy" data-phone="[WHATSAPP_PHONE]">📋 Copy Number</button>
       </div>
-
       <div class="qr-wrap">
         <p class="qr-label">Or scan to open WhatsApp 👇</p>
-        <canvas id="qr-canvas"></canvas>
+        <div id="qr-canvas"></div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════
-       8. VOICE NOTE
-  ═══════════════════════════════════════ -->
+  <!-- ── VOICE NOTE ─────────────────────────── -->
   <section id="voice-section" class="reveal-section">
     <div class="glass-card voice-card">
       <div class="voice-icon-wrap">
-        <span class="voice-pulse"></span>
-        🎧
+        <span class="voice-pulse"></span>🎧
       </div>
       <h2>A special message, just for you</h2>
       <p>Tap play and close your eyes. This one's from the heart.</p>
-      <!-- Replace src with your audio file URL -->
       <audio id="voice-note" controls preload="none">
         <source src="[YOUR_VOICE_NOTE_URL]" type="audio/mpeg" />
-        Your browser does not support the audio element.
       </audio>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════
-       9. SHARE SECTION
-  ═══════════════════════════════════════ -->
+  <!-- ── WISH / QUOTE CARD ─────────────────── -->
+  <section id="wish-section" class="reveal-section">
+    <div class="section-inner">
+      <div class="glass-card wish-card">
+        <div class="wish-stars">✦ ✦ ✦</div>
+        <blockquote class="wish-quote" id="wish-quote">
+          "May this year bring you everything you've dreamed of — and the courage to dream even bigger."
+        </blockquote>
+        <p class="wish-sig">— With love, always 💙</p>
+        <button id="new-wish-btn" class="btn-ghost">New Wish ✦</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SHARE ──────────────────────────────── -->
   <section id="share-section" class="reveal-section">
     <div class="section-inner">
       <p class="section-label">Spread the love</p>
       <h2>Share this page 🌍</h2>
       <div class="share-actions">
-        <!-- Replace PAGE_URL with your deployed URL -->
-        <a id="share-wa" href="https://wa.me/?text=Come%20celebrate%20with%20us%20%F0%9F%8E%82%20[PAGE_URL]" target="_blank" rel="noopener" class="btn-wa">
+        <a id="share-wa" href="#" target="_blank" rel="noopener" class="btn-wa">
           <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.549 4.118 1.51 5.851L.057 23.5l5.797-1.524A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.9 9.9 0 01-5.038-1.373l-.36-.214-3.742.982.999-3.648-.235-.374A9.86 9.86 0 012.1 12C2.1 6.525 6.525 2.1 12 2.1c5.474 0 9.9 4.425 9.9 9.9 0 5.474-4.426 9.9-9.9 9.9z"/></svg>
           Share on WhatsApp
         </a>
@@ -353,43 +407,38 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════
-       FOOTER
-  ═══════════════════════════════════════ -->
+  <!-- ── FOOTER ─────────────────────────────── -->
   <footer>
-    <p>Made with 💗 for <span class="accent-name">[BIRTHDAY_PERSON_NAME]</span></p>
-    <!-- 🎁 EASTER EGG — hidden clickable heart -->
-    <span id="easter-egg" title="Psst… tap me 👀" aria-label="Easter egg">🤍</span>
-    <p class="footer-powered">
-      Powered by <a href="https://devtech-pro.vercel.app/" target="_blank" rel="noopener" class="devtech-link">DevTech</a>
-    </p>
+    <div class="footer-inner">
+      <p class="footer-main">Made with 💗 for <span class="accent-name">Bram Myles</span></p>
+      <span id="easter-egg" title="Psst… tap me 👀" aria-label="Easter egg">🤍</span>
+      <p class="footer-powered">
+        Powered by <a href="https://devtech-pro.vercel.app/" target="_blank" rel="noopener" class="devtech-link">DevTech</a>
+      </p>
+    </div>
   </footer>
 
-  <!-- ═══════════════════════════════════════
-       EASTER EGG MODAL
-  ═══════════════════════════════════════ -->
-  <div id="easter-modal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Secret surprise">
+  <!-- EASTER EGG MODAL -->
+  <div id="easter-modal" class="modal hidden" role="dialog" aria-modal="true">
     <div class="glass-card modal-inner">
       <button class="modal-close" id="easter-close">&times;</button>
       <div class="easter-content">
         <p class="easter-emoji">🎁</p>
         <h2>You found the secret! 🤫</h2>
-        <!-- Replace with your video embed or custom message -->
         <p class="easter-msg">"Some people arrive and make such a beautiful impact on your life, you can barely remember what it was like without them. That's you. Always."</p>
         <p class="easter-sig">— Your biggest fan 💫</p>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════
-       CONFETTI CANVAS (full-screen overlay)
-  ═══════════════════════════════════════ -->
+  <!-- CONFETTI -->
   <canvas id="confetti-canvas" aria-hidden="true"></canvas>
 
-  <!-- QR Code library (MIT) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="toast hidden"></div>
 
-  <!-- Main JS -->
+  <!-- QR CODE lib -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
