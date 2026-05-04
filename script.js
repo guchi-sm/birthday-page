@@ -9,9 +9,9 @@
    CONFIGURATION — edit these values
 ────────────────────────────────────── */
 const CONFIG = {
-  birthdayPersonName : "[BRAMWELL MULWAS]",   // 🔧 Change this
+  birthdayPersonName : "Bramwell Mulwa",  // 🔧 Change this
   birthdayDate       : "2026-05-05T00:00:00",       // 🔧 ISO date string
-  whatsappPhone      : "[WHATSAPP_PHONE]",           // 🔧 e.g. 254712345678
+  whatsappPhone      : "[254739106613]",           // 🔧 e.g. 254712345678
   pageUrl            : window.location.href,          // auto-detected
 
   // Typewriter phrases — edit or add your own
