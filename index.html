@@ -19,28 +19,19 @@
 
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Firebase -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, onSnapshot, orderBy, query, serverTimestamp }
-      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  <!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // 🔧 PASTE YOUR SUPABASE DETAILS HERE
+  const SUPABASE_URL  = "https://YOUR_PROJECT_ID.supabase.co";
+  const SUPABASE_ANON = "YOUR_ANON_PUBLIC_KEY";
 
-    // 🔥 PASTE YOUR FIREBASE CONFIG HERE
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT_ID.appspot.com",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
-    };
+  const { createClient } = supabase;
+  const _supa = createClient(SUPABASE_URL, SUPABASE_ANON);
+  window.__supa = _supa;
+  window.dispatchEvent(new Event("supabase-ready"));
+</script>
 
-    const app = initializeApp(firebaseConfig);
-    const db  = getFirestore(app);
-    window.__db = db;
-    window.__fbModules = { collection, addDoc, onSnapshot, orderBy, query, serverTimestamp };
-    window.dispatchEvent(new Event("firebase-ready"));
-  </script>
 </head>
 <body>
 
@@ -144,7 +135,7 @@
               <img src="https://images.unsplash.com/photo-1464349153735-7db50ed83c84?w=600&q=80" alt="Memory 1" loading="lazy" />
             </div>
             <div class="tl-body">
-              <span class="tl-date">January 2020</span>
+              <span class="tl-date">January 2026</span>
               <p class="tl-caption">"That day we laughed until our cheeks hurt — a memory I'll carry forever." 💫</p>
             </div>
           </div>
@@ -154,10 +145,10 @@
           <div class="timeline-dot"></div>
           <div class="glass-card tl-inner">
             <div class="tl-img-wrap">
-              <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=600&q=80" alt="Memory 2" loading="lazy" />
+              <img src="https://res.cloudinary.com/dr7bxjwjf/image/upload/f_auto,q_auto/IMG-20260505-WA0029_1_teukmg" alt="Memory 2" loading="lazy" />
             </div>
             <div class="tl-body">
-              <span class="tl-date">June 2021</span>
+              <span class="tl-date">June 2026</span>
               <p class="tl-caption">"Adventures with you never feel like adventures — they feel like home." 🌅</p>
             </div>
           </div>
@@ -167,10 +158,10 @@
           <div class="timeline-dot"></div>
           <div class="glass-card tl-inner">
             <div class="tl-img-wrap">
-              <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80" alt="Memory 3" loading="lazy" />
+              <img src="https://res.cloudinary.com/dr7bxjwjf/image/upload/v1777931399/IMG-20260505-WA0030_1_m6kl3s.jpg" alt="Memory 3" loading="lazy" />
             </div>
             <div class="tl-body">
-              <span class="tl-date">December 2022</span>
+              <span class="tl-date">December 2026</span>
               <p class="tl-caption">"Some friendships are seasons. Ours is a whole climate." ❄️</p>
             </div>
           </div>
@@ -180,7 +171,7 @@
           <div class="timeline-dot"></div>
           <div class="glass-card tl-inner">
             <div class="tl-img-wrap">
-              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Memory 4" loading="lazy" />
+              <img src="https://res.cloudinary.com/dr7bxjwjf/image/upload/v1777931725/IMG-20260505-WA0024_iqed9i.jpg" alt="Memory 4" loading="lazy" />
             </div>
             <div class="tl-body">
               <span class="tl-date">Today, 2025</span>
@@ -200,27 +191,27 @@
       <h2>Our gallery of us 📸</h2>
       <div class="photo-grid" id="photo-grid">
         <div class="photo-item" data-index="0">
-          <img src="https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=600&q=80" alt="Photo 1" loading="lazy" />
+          <img src="https://res.cloudinary.com/dr7bxjwjf/image/upload/v1777931899/IMG-20260505-WA0023_v1fmjs.jpg" alt="Photo 1" loading="lazy" />
           <div class="photo-overlay"><span>✦</span></div>
         </div>
         <div class="photo-item" data-index="1">
-          <img src="https://images.unsplash.com/photo-1525268323446-0505b6fe7778?w=600&q=80" alt="Photo 2" loading="lazy" />
+          <img src="https://res.cloudinary.com/dr7bxjwjf/image/upload/v1777932260/IMG-20260505-WA0026_i6czig.jpg" alt="Photo 2" loading="lazy" />
           <div class="photo-overlay"><span>✦</span></div>
         </div>
         <div class="photo-item" data-index="2">
-          <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=600&q=80" alt="Photo 3" loading="lazy" />
+          <img src="https://res.cloudinary.com/dr7bxjwjf/image/upload/v1777932358/IMG-20260505-WA0028_jvl4wo.jpg" alt="Photo 3" loading="lazy" />
           <div class="photo-overlay"><span>✦</span></div>
         </div>
         <div class="photo-item" data-index="3">
-          <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80" alt="Photo 4" loading="lazy" />
+          <img src="https://res.cloudinary.com/dr7bxjwjf/image/upload/v1777932430/IMG-20260505-WA0027_1_fy0i2i.jpg" alt="Photo 4" loading="lazy" />
           <div class="photo-overlay"><span>✦</span></div>
         </div>
         <div class="photo-item" data-index="4">
-          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Photo 5" loading="lazy" />
+          <img src="https://res.cloudinary.com/dr7bxjwjf/image/upload/v1777932513/IMG-20260505-WA0022_q19z4j.jpg" alt="Photo 5" loading="lazy" />
           <div class="photo-overlay"><span>✦</span></div>
         </div>
         <div class="photo-item" data-index="5">
-          <img src="https://images.unsplash.com/photo-1464349153735-7db50ed83c84?w=600&q=80" alt="Photo 6" loading="lazy" />
+          <img src="https://res.cloudinary.com/dr7bxjwjf/image/upload/v1777932130/IMG-20260505-WA0020_gfd6vj.jpg" alt="Photo 6" loading="lazy" />
           <div class="photo-overlay"><span>✦</span></div>
         </div>
       </div>
@@ -268,7 +259,7 @@
             -->
             <iframe
               id="video-iframe"
-              src="https://www.youtube.com/embed/[YOUR_YOUTUBE_VIDEO_ID]?rel=0&modestbranding=1"
+              src="https://player.cloudinary.com/embed/?cloud_name=dr7bxjwjf&public_id=VID-20260505-WA0025_qohbo8"
               title="Birthday Video for Bram Myles"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -373,7 +364,7 @@
       <h2>A special message, just for you</h2>
       <p>Tap play and close your eyes. This one's from the heart.</p>
       <audio id="voice-note" controls preload="none">
-        <source src="[YOUR_VOICE_NOTE_URL]" type="audio/mpeg" />
+        <source src="https://www.youtube.com/watch?v=V1Pl8CzNzCw" type="audio/mpeg" />
       </audio>
     </div>
   </section>
